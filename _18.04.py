@@ -1,3 +1,4 @@
+#1 
 from pickle import FALSE
 import pygame, sys
 
@@ -50,7 +51,7 @@ while not lõpp:
 pygame.quit()
 
 
-#по диагонали
+#2 по диагонали
 """
 while not lõpp:
     kell.tick(60)
@@ -77,7 +78,7 @@ while not lõpp:
 pygame.quit()
 """
 
-#в разные стораны
+#3 в разные стораны
 """
 while not lõpp:
     kell.tick(60)
