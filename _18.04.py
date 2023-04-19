@@ -1,4 +1,3 @@
-
 from pickle import FALSE
 import pygame, sys
 
@@ -17,19 +16,91 @@ ekraan.fill(roheline)
 kell=pygame.time.Clock()
 pudge=pygame.image.load("zxc.png")
 posX=X-pudge.get_rect().width
-posY=Y-pudge.get_rect().height
+posY=0
 lõpp=False 
 samm=2
+suund = "alla"
 while not lõpp:
     kell.tick(60)
     events=pygame.event.get()
     for i in pygame.event.get():
-        if i. type==pygame.QUIT():
+        if i.type==pygame.QUIT:
             sys.exit()
-    ekraan.blit(pudge,(posX,posY))
-    posX-=samm
+            
+    if suund == "alla":
+        if posY >= Y - pudge.get_rect().height:
+            suund = "vasakule"
+        else:
+            posY += samm
+    elif suund == "vasakule":
+        if posX <= 0:
+            suund = "üles"
+        else:
+            posX -= samm
+    elif suund == "üles":
+        if posY <= 0:
+            suund = "peatatud"
+        else:
+            posY -= samm
+
+    if suund != "peatatud":
+        ekraan.blit(pudge,(posX,posY))
     pygame.display.flip()
     ekraan.fill(roheline)
 pygame.quit()
 
 
+#по диагонали
+"""
+while not lõpp:
+    kell.tick(60)
+    events=pygame.event.get()
+    for i in pygame.event.get():
+        if i.type==pygame.QUIT:
+            sys.exit()
+    
+    posX += suundX * samm
+    posY += suundY * samm
+    
+    if posX <= 0 or posX >= X - pudge.get_rect().width:
+        suundX *= -1
+    if posY <= 0 or posY >= Y - pudge.get_rect().height:
+        suundY *= -1
+    
+    ekraan.blit(pudge,(posX,posY))
+    pygame.display.flip()
+    ekraan.fill(roheline)
+    
+    if posX == algne_posX and posY == algne_posY:
+        lõpp = True
+
+pygame.quit()
+"""
+
+#в разные стораны
+"""
+while not lõpp:
+    kell.tick(60)
+    events=pygame.event.get()
+    for i in pygame.event.get():
+        if i.type==pygame.QUIT:
+            sys.exit()
+    
+    posX += suundX * samm
+    posY += suundY * samm
+    
+    if posX <= 0 or posX >= X - pudge.get_rect().width:
+        suundX *= -1
+    if posY <= 0 or posY >= Y - pudge.get_rect().height:
+        suundY *= -1
+    
+    ekraan.blit(pudge,(posX,posY))
+    pygame.display.flip()
+    ekraan.fill(roheline)
+    
+    if posX == algne_posX and posY == algne_posY:
+        suundX = 1 if suundX == -1 else -1
+        suundY = 1 if suundY == -1 else -1
+
+pygame.quit()
+"""
